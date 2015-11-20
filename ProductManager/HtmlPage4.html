@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <style>
+        #image1 {
+            height:100px;
+            width:100px;
+            position:absolute;
+            left:0px;
+            top:0px;
+        }
+    </style>
+    <script>
+
+        function start() {
+            alert("in");
+            setTimeout(function () {
+                document.getElementById("image1").style.position = "absolute";
+                document.getElementById("image1").style.top = "0px";
+                document.getElementById("image1").style.left = "400px";
+            }, 1000);
+
+            setTimeout(function () {
+                document.getElementById("image1").style.position = "absolute";
+                document.getElementById("image1").style.top = "400px";
+                document.getElementById("image1").style.left = "400px";
+            }, 500);
+
+            setTimeout(function () {
+                document.getElementById("image1").style.position = "absolute";
+                document.getElementById("image1").style.top = "400px";
+                document.getElementById("image1").style.left = "0px";
+            }, 1000);
+
+            setTimeout(function () {
+                document.getElementById("image1").style.position = "absolute";
+                document.getElementById("image1").style.top = "0px";
+                document.getElementById("image1").style.left = "0px";
+            }, 500);
+
+            
+        }
+    </script>
+</head>
+<body>
+    <img id="image1" src="Koala.jpg" onclick="start()" />
+</body>
+</html>

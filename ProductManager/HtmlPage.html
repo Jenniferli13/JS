@@ -1,0 +1,154 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Product Manager App</title>
+    <script>
+        var data = [{productId:1,productName:'Burger',productPrice:10,category:'Food'}];
+
+        window.onload = function () {
+            
+            document.getElementById("formPanel").style.display = "none";
+
+            loadGrid();
+        }
+
+        function loadGrid() {
+            var table = "<table><tr><th>Id</th><th>Name</th><th>Price</th><th>Category</th><th>Actions</th></tr>";
+
+            data.forEach(function (entry) {
+                table += "<tr><td>" + entry.productId + "</td><td>" + entry.productName + "</td><td>" + entry.productPrice + "</td><td>" + entry.category + "</td><td><a href='javascript:void(0)' onclick='getProductById("+entry.productId+")'>View</a>|<a href='javascript:void(0)'>Edit</a>|<a href='javascript:void(0)'>Delete</a></td></tr>";
+
+            });
+
+            table += "</table>";
+            document.getElementById("grid").innerHTML = table;
+        }
+
+
+        function showForm() {
+            document.getElementById("isAdding").style.display = "block";
+            document.getElementById("isEditing").style.display = "none";
+            document.getElementById("isViewing").style.display = "none";
+
+
+            document.getElementById("gridPanel").style.display = "none";
+            document.getElementById("formPanel").style.display = "block";
+        }
+
+        function closeForm() {
+            document.getElementById("formPanel").style.display = "none";
+            document.getElementById("gridPanel").style.display = "block";
+        }
+
+
+        function save() {
+            var productId = 0;
+            if (data.length > 0) {
+                productId = data.length + 1;
+            } else {
+                productId = 1;
+            }
+
+            var productName = document.getElementById("productName").value;
+            var productPrice = document.getElementById("productPrice").value;
+            var productCategory = document.getElementById("productCategory").value;
+
+            var product = { productId: productId, productName: productName, productPrice: productPrice, category: productCategory };
+            
+            data.push(product);
+            alert("Added...........");
+            closeForm();
+            loadGrid();
+
+        }
+
+        function getProductById(id) {
+            showForm();
+
+            document.getElementById("isAdding").style.display = "none";
+            document.getElementById("isEditing").style.display = "none";
+            document.getElementById("isViewing").style.display = "block";
+
+
+
+           
+            for (var i = 0; i < data.length; i++) {
+                if (data[i].productId == id) {
+                    document.getElementById("productName").value = data[i].productName;
+                    document.getElementById("productPrice").value = data[i].productPrice;
+                    document.getElementById("productCategory").value = data[i].category;
+                    break;
+                }
+            }
+        }
+    </script>
+
+    <style>
+        table {
+            width:100%;
+            height:200px;
+            margin:5px;
+            padding:5px;
+        }
+
+            table tr:first-child {
+                background-color:#c79b9b;
+                color:#00ff90;
+                border:1px solid blue;
+            }
+    </style>
+</head>
+<body>
+    <div id="gridPanel">
+        <div>
+            <button type="button" onclick="showForm()">Add New</button>
+        </div>
+        <div id="grid">
+
+        </div>
+    </div>
+    <div id="formPanel">
+        <form>
+            <div>
+                <h3>Add New Product</h3>
+            </div>
+            <div>
+                <label>Product Name</label>
+                <input type="text" id="productName" /> 
+            </div>
+            <div>
+                <label>Product Price</label>
+                <input type="text" id="productPrice" />
+            </div>
+            <div>
+                <label>Category</label>
+                <input type="text" list="categories" id="productCategory" />
+
+                <datalist id="categories">
+                    <option value="Food">Food</option>
+                    <option value="Drink">Drink</option>
+                    <option value="Chocolates">Chocoloates</option>
+                    <option value="Cloths">Cloths</option>
+                    <option value="Animal">Animal</option>
+                </datalist>
+            </div>
+            <div id="isAdding">
+                <button type="button" onclick="save()">Save</button>
+                &nbsp;
+                &nbsp;
+                <button type="button" onclick="closeForm()">Cancel</button>
+            </div>
+
+            <div id="isEditing">
+                   <button type="button" onclick="save()">Update</button>
+                &nbsp;
+                &nbsp;
+                <button type="button" onclick="closeForm()">Cancel</button>
+            </div>
+            <div id="isViewing">
+                   <button type="button" onclick="closeForm()">Cancel</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

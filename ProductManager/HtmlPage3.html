@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>JS Validations</title>
+    <script>
+        function fnRequired(args) {
+            var input = args.value;
+            if (input == "" || input == null) {
+                alert("field is missing");
+                args.focus();
+                return false;
+            } else {
+                return true;
+            }
+        }
+
+        function fnValidateEmail(args) {
+            var input = args.value;
+            var regEx = /^\w+\@\w+\.[a-z]{2,4}$/;
+            if (input.match(regEx)) {
+                return true;
+            }
+            else {
+                alert("invalid email");
+                args.focus();
+                return false;
+            }
+        }
+
+        function fnValidateMobile(args) {
+            var input = args.value;
+            var regEx = /^\d{10}$/;
+            if (input.match(regEx)) {
+                return true;
+           }
+            else {
+                alert("invalid mobile");
+                args.focus();
+                return false;
+            }
+        }
+
+        function formValidate() {
+            var fname = document.getElementById("fname");
+            var email = document.getElementById("email");
+            var mobile = document.getElementById("mobile");
+
+            if (fnRequired(fname) && fnRequired(email) && fnRequired(mobile) && fnValidateEmail(email) && fnValidateMobile(mobile)) {
+                alert("Form is submitted...");
+                return true;
+            } else {
+                return false;
+            }
+
+        }
+
+
+    </script>
+</head>
+<body>
+    <form onsubmit="return formValidate()">
+        <div>
+            <label>Name</label>
+            <input type="text" id="fname" />
+        </div>
+        <div>
+            <label>Email</label>
+            <input type="text" id="email" /> 
+        </div>
+        <div>
+            <label>Mobile</label>
+            <input type="text" id="mobile" />
+        </div>
+        <div>
+            <button  type="submit">Submit</button>
+        </div>
+    </form>
+</body>
+</html>

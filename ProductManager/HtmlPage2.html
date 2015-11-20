@@ -1,0 +1,24 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script>
+        
+        function change() {
+            document.getElementById("image1").src = "Penguins.jpg";
+            document.getElementById("image1").style.height = "500px";
+            document.getElementById("Image1").style.width = "300px";
+        }
+
+        function reset() {
+
+            document.getElementById("image1").src = "tulips.jpg";
+            document.getElementById("image1").style.height = "200px";
+            document.getElementById("Image1").style.width = "100px";
+        }
+    </script>
+</head>
+<body>
+    <img id="image1" src="Tulips.jpg" onmouseover="change()" onmouseout="reset()" />
+</body>
+</html>
